@@ -1,12 +1,20 @@
 import type { NextPage } from "next";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { User } from "./api/models/User";
+import { GetServerSideProps } from "next";
+
+export async function getServerSideProps(ctx: any) {
+  return {
+    props: {
+      session: await getSession(ctx),
+    },
+  };
+}
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
-  // console.log("session", session);
+  console.log("session", session);
 
   return (
     <div>

@@ -4,7 +4,8 @@ import SequelizeAdapter, { models } from "@next-auth/sequelize-adapter";
 import { Sequelize, DataTypes } from "sequelize";
 import { getToken } from "next-auth/jwt";
 import { User } from "../models/User";
-import getUserByEmail from "../getUserByEmail";
+import getUserByEmail from "../services/getUserByEmail";
+import { db, adapter } from "../db/db";
 
 export default NextAuth({
   providers: [
@@ -15,17 +16,15 @@ export default NextAuth({
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
-        const user = await getUserByEmail(credentials!.email);
-        const data = user?.toJSON();
-
+        const userData = await getUserByEmail(credentials!.email);
+        const data = userData?.toJSON();
         // check if data is correct
         if (
           credentials?.email === data.email &&
           credentials?.password === data.password
         ) {
-          return {
-            user,
-          };
+          console.log(data);
+          return data;
         }
         //login failed
         return null;
@@ -38,13 +37,20 @@ export default NextAuth({
   callbacks: {
     jwt: ({ token, user }) => {
       if (user) {
-        token.id = user.id;
+        return {
+          ...token,
+          role: user.role,
+        };
       }
       return token;
     },
     session: ({ session, token }) => {
       if (token) {
-        session.id = token.id;
+        return {
+          ...session,
+          id: token.sub,
+          role: token.role,
+        };
       }
       return session;
     },

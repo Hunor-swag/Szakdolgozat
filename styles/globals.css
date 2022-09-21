@@ -14,3 +14,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+/* helyett
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities{
+	button{
+		@apply border-black border rounded-lg p-2
+	}
+}
+*/

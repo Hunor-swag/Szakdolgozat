@@ -17,6 +17,7 @@ export default NextAuth({
       },
       authorize: async (credentials) => {
         const userData = await getUserByEmail(credentials!.email);
+        console.log(userData);
         const data = userData?.toJSON();
         // check if data is correct
         if (

@@ -1,63 +1,137 @@
 import type { NextPage } from "next";
 import { useSession, getSession, signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import { User } from "../../interfaces/interfaces";
 import { Context } from "vm";
 import getUsers from "../api/services/getUsers";
 import Link from "next/link";
 import { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import LinkButton from "../../components/LinkButton";
+import { User } from "../api/models/User";
+import getUserByEmail from "../api/services/getUserByEmail";
+import { Session } from "next-auth";
+import { UserInterface } from "../../interfaces/interfaces";
 
 export async function getServerSideProps(ctx: any) {
+  let users = await getUsers();
   return {
     props: {
       session: await getSession(ctx),
+      users: JSON.parse(JSON.stringify(users)),
     },
   };
 }
 
-const Admin: NextPage = () => {
-  const { data: session, status } = useSession();
+const handleRadioClick = (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  console.log(target.value + " set as role.");
+};
 
-  if (session && session!.role === "admin") {
+const Admin: NextPage<{ session: Session; users: string[] }> = (props) => {
+  if (props.session && props.session!.role === "admin") {
     return (
-      <div>
-        <button onClick={() => signOut()}>Log out</button>
-        <h2>Users:</h2>
-        <h1>Welcome to the admin panel</h1>
-        <h2>Személy létrehozása:</h2>
-        <h3>Szerepköre:</h3>
-        <div>
-          <input type="radio" name="role" />
-          <label>Témavezető / oktató</label>
-          <input type="radio" name="role" />
-          <label>PhD hallgató</label>
-          <input type="radio" name="role" />
-          <label>PhD hallgató (egyéni felkészüléses)</label>
+      <>
+        <h1>Admin felület</h1>
+        <div className="max-w-xl">
+          <h2>Személy létrehozása</h2>
+          <Formik
+            initialValues={{
+              role: "",
+              lang: "",
+            }}
+            onSubmit={(values, { setSubmitting }) => {}}
+          >
+            {({ values }) => (
+              <Form>
+                <div>
+                  <label>
+                    <Field
+                      type="radio"
+                      name="role"
+                      value="Témavezető / oktató"
+                    />
+                    Témavezető / oktató
+                  </label>
+                  <label>
+                    <Field type="radio" name="role" value="PhD hallgató" />
+                    PhD hallgató
+                  </label>
+                  <label>
+                    <Field
+                      type="radio"
+                      name="role"
+                      value="PhD hallgató (egyéni felkészüléses)"
+                    />
+                    PhD hallgató (egyéni felkészüléses)
+                  </label>
+                  {/* <div>Kivalasztott: {values.role}</div> */}
+                </div>
+                <div>
+                  <Field
+                    type="text"
+                    name="veznev"
+                    placeholder="Vezetéknév"
+                    className="bg-gray-50 block w-full pl-3 sm:text-sm border-gray-300 focus:ring-black focus:border-black rounded-md"
+                  />
+                  <Field
+                    type="text"
+                    name="kernev"
+                    placeholder="Keresztnév"
+                    className="bg-gray-50 block w-full pl-3 sm:text-sm border-gray-300 focus:ring-black focus:border-black rounded-md"
+                  />
+                </div>
+                <div>
+                  Általa használt nyelv: <br />
+                  <label>
+                    <Field type="radio" name="lang" value="magyar" />
+                    magyar
+                  </label>
+                  <label>
+                    <Field type="radio" name="lang" value="angol" />
+                    angol
+                  </label>
+                  {/* <div>Kiválasztott:{values.lang}</div> */}
+                </div>
+                <div>
+                  <Field type="text" name="email" placeholder="E-mail címe" />
+                </div>
+                {values.role === "Témavezető / oktató" ? (
+                  <div>
+                    <label>Intézmény hosszú neve:</label>
+                    <select name="" id=""></select>
+                    <br />
+                    <label>Kar neve:</label>
+                    <select name="kar" id=""></select>
+                    <br />
+                    <label>Tanszék neve:</label>
+                    <br />
+                    <label>Címe:</label>
+                    <br />
+                    <label>Beosztás:</label>
+                    <br />
+                    <label>Tudományos fokozat:</label>
+                    <select name="tud_fok" id="">
+                      <option>---</option>
+                      <option>PhD</option>
+                      <option>DSc</option>
+                    </select>
+                    <br />
+                  </div>
+                ) : (
+                  <div>hallgato</div>
+                )}
+                <button>Submit</button>
+                <br />
+              </Form>
+            )}
+          </Formik>
         </div>
-        <h3>Név:</h3>
-        <div>
-          Vezetéknév: <input type="text" />
-          Keresztnév: <input type="text" />
-        </div>
-        <h3>Általa használt nyelv:</h3>
-        <div>
-          <input type="radio" name="name" />
-          <label>magyar</label>
-          <input type="radio" name="name" />
-          <label>angol</label>
-        </div>
-        <h3>E-mail címe:</h3>
-        <input type="text" />
-      </div>
+      </>
     );
   } else
     return (
       <div>
-        <h1>
-          You dont have permission to the admin interface. Link to user
-          interface:
-        </h1>
-        <Link href="/user">User interface</Link>
+        <h1>You dont have permission to the admin interface.</h1>
       </div>
     );
 };

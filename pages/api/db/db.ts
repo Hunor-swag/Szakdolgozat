@@ -6,8 +6,3 @@ export const db = new Sequelize(
 );
 
 export const adapter = SequelizeAdapter(db);
-
-// const sequelize = new Sequelize("szakdolgozat", "root", "123456", {
-//   host: "localhost",
-//   dialect: "mysql",
-// });

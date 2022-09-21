@@ -2,6 +2,9 @@ import type { NextPage } from "next";
 import { signOut, getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
+import { disconnect } from "process";
+import LinkButton from "../components/LinkButton";
+import Link from "next/link";
 
 export async function getServerSideProps(ctx: any) {
   return {
@@ -14,7 +17,6 @@ export async function getServerSideProps(ctx: any) {
 const Home: NextPage = () => {
   const { data: session } = useSession();
   const router = useRouter();
-  console.log("session", session);
 
   return (
     <div>
@@ -26,13 +28,6 @@ const Home: NextPage = () => {
         </>
       ) : (
         <>
-          <button
-            onClick={() => {
-              router.push("/api/auth/signin");
-            }}
-          >
-            Sign in
-          </button>
           <p>You are currently signed out</p>
         </>
       )}

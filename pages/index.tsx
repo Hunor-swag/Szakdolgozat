@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { signOut, getSession, useSession } from "next-auth/react";
+import { signOut, getSession, useSession, signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { disconnect } from "process";
@@ -29,6 +29,7 @@ const Home: NextPage = () => {
       ) : (
         <>
           <p>You are currently signed out</p>
+          <button onClick={() => signIn()}>Sign in</button>
         </>
       )}
     </div>

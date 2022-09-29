@@ -1,18 +1,34 @@
 import type { NextPage } from "next";
-import { useSession, getSession, signOut } from "next-auth/react";
-import { useRouter } from "next/router";
-import { Context } from "vm";
+import { getSession } from "next-auth/react";
 import getUsers from "../api/services/getUsers";
-import Link from "next/link";
-import { useState } from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import LinkButton from "../../components/LinkButton";
-import { User } from "../api/models/User";
-import getUserByEmail from "../api/services/getUserByEmail";
+import { Formik, Form } from "formik";
 import { Session } from "next-auth";
-import { UserInterface } from "../../interfaces/interfaces";
+import ConsultantInfo from "../../components/ConsultantInfo";
+import StudentInfo from "../../components/StudentInfo";
+import BasicInfo from "../../components/BasicInfo";
+import createConsultant from "../api/services/createConsultant";
+import { useState } from "react";
+
+interface Props {
+  session: Session;
+  users: string[];
+}
 
 export async function getServerSideProps(ctx: any) {
+  // if (ctx.req.method === "POST") {
+  //   await createConsultant(
+  //     values.firstname,
+  //     values.lastname,
+  //     values.email,
+  //     values.role,
+  //     values.faculty,
+  //     values.professorship,
+  //     values.title,
+  //     values.status,
+  //     values.academic_degree
+  //   );
+  // }
+
   let users = await getUsers();
   return {
     props: {
@@ -27,7 +43,9 @@ const handleRadioClick = (e: Event) => {
   console.log(target.value + " set as role.");
 };
 
-const Admin: NextPage<{ session: Session; users: string[] }> = (props) => {
+const Admin: NextPage<Props> = (props) => {
+  console.log(props.users);
+
   if (props.session && props.session!.role === "admin") {
     return (
       <>
@@ -37,89 +55,33 @@ const Admin: NextPage<{ session: Session; users: string[] }> = (props) => {
           <Formik
             initialValues={{
               role: "",
-              lang: "",
+              lastname: "",
+              firstname: "",
+              lang: "magyar",
+              email: "",
+              faculty: "",
+              professorship: "",
+              status: "",
+              academic_degree: "",
+              institution_name: "",
+              title: "",
+              consultant_name: "",
+              consultant2_name: "",
+              payment_method: "",
+              other_payment_method: "",
+              date_of_admission: "",
             }}
-            onSubmit={(values, { setSubmitting }) => {}}
+            onSubmit={(values, { setSubmitting }) => {
+              //ide jon az adatok beillesztese az adatbazisba
+            }}
           >
             {({ values }) => (
               <Form>
-                <div>
-                  <label>
-                    <Field
-                      type="radio"
-                      name="role"
-                      value="Témavezető / oktató"
-                    />
-                    Témavezető / oktató
-                  </label>
-                  <label>
-                    <Field type="radio" name="role" value="PhD hallgató" />
-                    PhD hallgató
-                  </label>
-                  <label>
-                    <Field
-                      type="radio"
-                      name="role"
-                      value="PhD hallgató (egyéni felkészüléses)"
-                    />
-                    PhD hallgató (egyéni felkészüléses)
-                  </label>
-                  {/* <div>Kivalasztott: {values.role}</div> */}
-                </div>
-                <div>
-                  <Field
-                    type="text"
-                    name="veznev"
-                    placeholder="Vezetéknév"
-                    className="bg-gray-50 block w-full pl-3 sm:text-sm border-gray-300 focus:ring-black focus:border-black rounded-md"
-                  />
-                  <Field
-                    type="text"
-                    name="kernev"
-                    placeholder="Keresztnév"
-                    className="bg-gray-50 block w-full pl-3 sm:text-sm border-gray-300 focus:ring-black focus:border-black rounded-md"
-                  />
-                </div>
-                <div>
-                  Általa használt nyelv: <br />
-                  <label>
-                    <Field type="radio" name="lang" value="magyar" />
-                    magyar
-                  </label>
-                  <label>
-                    <Field type="radio" name="lang" value="angol" />
-                    angol
-                  </label>
-                  {/* <div>Kiválasztott:{values.lang}</div> */}
-                </div>
-                <div>
-                  <Field type="text" name="email" placeholder="E-mail címe" />
-                </div>
-                {values.role === "Témavezető / oktató" ? (
-                  <div>
-                    <label>Intézmény hosszú neve:</label>
-                    <select name="" id=""></select>
-                    <br />
-                    <label>Kar neve:</label>
-                    <select name="kar" id=""></select>
-                    <br />
-                    <label>Tanszék neve:</label>
-                    <br />
-                    <label>Címe:</label>
-                    <br />
-                    <label>Beosztás:</label>
-                    <br />
-                    <label>Tudományos fokozat:</label>
-                    <select name="tud_fok" id="">
-                      <option>---</option>
-                      <option>PhD</option>
-                      <option>DSc</option>
-                    </select>
-                    <br />
-                  </div>
-                ) : (
-                  <div>hallgato</div>
+                <BasicInfo />
+                {values.role === "Témavezető / oktató" && (
+                  <ConsultantInfo institution_name="Halo" />
                 )}
+                {values.role.includes("PhD hallgató") && <StudentInfo />}
                 <button>Submit</button>
                 <br />
               </Form>

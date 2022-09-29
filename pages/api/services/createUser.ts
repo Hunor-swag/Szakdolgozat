@@ -7,7 +7,7 @@ export default async function createUser(
   email: string,
   role: string
 ) {
-  const user = User.create({
+  const user = await User.create({
     firstname: firstname,
     lastname: lastname,
     password: password,

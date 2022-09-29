@@ -1,11 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
-import SequelizeAdapter, { models } from "@next-auth/sequelize-adapter";
-import { Sequelize, DataTypes } from "sequelize";
-import { getToken } from "next-auth/jwt";
-import { User } from "../models/User";
 import getUserByEmail from "../services/getUserByEmail";
-import { db, adapter } from "../db/db";
 
 export default NextAuth({
   providers: [

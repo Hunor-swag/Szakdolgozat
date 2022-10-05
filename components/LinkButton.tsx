@@ -1,5 +1,3 @@
-import { NextComponentType } from "next";
-import { useRouter } from "next/router";
 import { NextPage } from "next";
 
 type Props = {
@@ -8,15 +6,10 @@ type Props = {
 };
 
 const LinkButton: NextPage<Props> = ({ text, route }) => {
-  const router = useRouter();
   return (
-    <button
-      onClick={() => {
-        router.push(route);
-      }}
-    >
-      {text}
-    </button>
+    <a href={route}>
+      <button>{text}</button>
+    </a>
   );
 };
 

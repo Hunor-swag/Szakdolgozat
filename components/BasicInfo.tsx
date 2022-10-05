@@ -1,9 +1,9 @@
 import { Field } from "formik";
-import React from "react";
+import { NextPage } from "next";
 
-const BasicInfo = () => {
+const BasicInfo: NextPage = () => {
   return (
-    <>
+    <div className="radio-group">
       <div>
         <label>
           <Field type="radio" name="role" value="Témavezető / oktató" />
@@ -52,7 +52,7 @@ const BasicInfo = () => {
       <div>
         <Field type="text" name="email" placeholder="E-mail címe" />
       </div>
-    </>
+    </div>
   );
 };
 

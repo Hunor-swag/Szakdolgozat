@@ -1,31 +1,25 @@
-import React from "react";
 import { Field } from "formik";
 import { NextPage } from "next";
 
-interface Props {
-  institution_name: string;
-}
-
-const ConsultantInfo: NextPage<Props> = (props: Props) => {
+const ConsultantInfo: NextPage = () => {
   return (
     <div>
       <label>Intézmény hosszú neve:</label>
       <Field as="select" name="institution_name">
         <option value=""></option>
-        <option value={props.institution_name}>{props.institution_name}</option>
       </Field>
       <br />
       <label>Kar neve:</label>
-      <select name="faculty" id=""></select>
+      <Field as="select" name="faculty" id=""></Field>
       <br />
       <label>Tanszék neve:</label>
-      <select name="professorship" id=""></select>
+      <Field as="select" name="professorship"></Field>
       <br />
       <label>Címe:</label>
-      <Field type="text" name="title" />
+      <Field type="text" name="consultant_title" />
       <br />
       <label>Beosztás:</label>
-      <select name="status"></select>
+      <Field as="select" name="status"></Field>
       <br />
       <label>Tudományos fokozat:</label>
       <Field as="select" name="academic_degree">

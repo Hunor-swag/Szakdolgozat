@@ -1,7 +1,7 @@
-import React from "react";
 import { Field } from "formik";
+import { NextPage } from "next";
 
-const StudentInfo = () => {
+const StudentInfo: NextPage = () => {
   return (
     <div>
       <p>
@@ -14,7 +14,7 @@ const StudentInfo = () => {
       </p>
       <p>
         Téma címe:
-        <Field type="text" name="title" />
+        <Field type="text" name="student_title" />
       </p>
       <p>
         Finanszírozási forma:

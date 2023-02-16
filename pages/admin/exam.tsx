@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import { getSession } from "next-auth/react";
 import { Session } from "next-auth";
 import { Field, Formik, Form } from "formik";
+import Link from "next/link";
 
 type Consultant = {
   academic_degree: string;
@@ -27,44 +28,44 @@ interface Props {
   students: Student[];
 }
 
-export async function getServerSideProps(ctx: any) {
-  const consultants_result = await fetch(
-    "http://localhost:3000/api/getConsultants",
-    {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  if (consultants_result.status !== 200) {
-    console.log("error loading consultants");
-    return;
-  }
-  const consultants = await consultants_result.json();
+// export async function getServerSideProps(ctx: any) {
+//   const consultants_result = await fetch(
+//     "http://localhost:3000/api/getConsultants",
+//     {
+//       method: "GET",
+//       headers: {
+//         Accept: "application/json",
+//         "Content-Type": "application/json",
+//       },
+//     }
+//   );
+//   if (consultants_result.status !== 200) {
+//     console.log("error loading consultants");
+//     return;
+//   }
+//   const consultants = await consultants_result.json();
 
-  const students_res = await fetch("http://localhost:3000/api/getStudents", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  });
-  if (consultants_result.status !== 200) {
-    console.log("error loading students");
-    return;
-  }
-  const students = await students_res.json();
+//   const students_res = await fetch("http://localhost:3000/api/getStudents", {
+//     method: "GET",
+//     headers: {
+//       Accept: "application/json",
+//       "Content-Type": "application/json",
+//     },
+//   });
+//   if (consultants_result.status !== 200) {
+//     console.log("error loading students");
+//     return;
+//   }
+//   const students = await students_res.json();
 
-  return {
-    props: {
-      session: await getSession(ctx),
-      consultants: consultants,
-      students: students,
-    },
-  };
-}
+//   return {
+//     props: {
+//       session: await getSession(ctx),
+//       consultants: consultants,
+//       students: students,
+//     },
+//   };
+// }
 
 const Exam: NextPage<Props> = (props) => {
   const initialValues = {
@@ -78,23 +79,24 @@ const Exam: NextPage<Props> = (props) => {
           const { values } = data;
           return (
             <Form>
+              <h1>Komplex vizsga</h1>
               <div>
                 Hallgató:{" "}
                 <select name="student">
-                  {props.students.map((student, index) => {
+                  {/* {props.students.map((student, index) => {
                     return <option key={index}>{student.name}</option>;
-                  })}
+                  })} */}
                 </select>
                 <br />
                 Témavezető:{" "}
                 <select name="consultant">
-                  {props.consultants.map((consultant, index) => {
+                  {/* {props.consultants.map((consultant, index) => {
                     return (
                       <option key={index}>
                         {consultant.lastname} {consultant.firstname}
                       </option>
                     );
-                  })}
+                  })} */}
                 </select>
                 <br />
                 A téma címe: <Field value="" />
@@ -106,7 +108,9 @@ const Exam: NextPage<Props> = (props) => {
                 <br />
               </div>
               <div>
-                <button>Új bizottság felvétele</button>
+                <Link href="/admin/new_committee">
+                  <button>Új bizottság felvétele</button>
+                </Link>
                 <button>Felkérő levelek generálása</button>
                 <button>Meghívó generálása</button>
                 <br />

@@ -6,7 +6,6 @@ import { Field, Form, Formik } from "formik";
 import ConsultantInfo from "../../components/ConsultantInfo";
 import StudentInfo from "../../components/StudentInfo";
 import BasicInfo from "../../components/BasicInfo";
-import Link from "next/link";
 
 interface Props {
   session: Session;
@@ -22,22 +21,11 @@ export async function getServerSideProps(ctx: any) {
 
 const Admin: NextPage<Props> = (props) => {
   const initialValues = {
-    role: "",
     lastname: "",
     firstname: "",
-    lang: "",
     email: "",
     institution_name: "",
     faculty: "",
-    professorship: "",
-    consultant_title: "",
-    status: "",
-    academic_degree: "",
-    consultant_name: "",
-    consultant2_name: "",
-    student_title: "",
-    payment_method: "",
-    date_of_admission: "",
   };
 
   if (props.session && props.session!.role === "admin") {
@@ -51,39 +39,16 @@ const Admin: NextPage<Props> = (props) => {
             initialValues={initialValues}
             onSubmit={async (values) => {
               console.log(values);
-              alert(JSON.stringify(values, null, 2));
-              let data = {};
-              let basicData = {
-                firstname: values.firstname,
+              // alert(JSON.stringify(values, null, 2));
+              let data = {
                 lastname: values.lastname,
-                lang: values.lang,
+                firstname: values.firstname,
                 email: values.email,
+                institution_name: values.institution_name,
+                faculty: values.faculty,
               };
-              if (values.role === "Témavezető / oktató") {
-                data = {
-                  ...basicData,
-                  tablename: "consultants",
-                  institution_name: values.institution_name,
-                  faculty: values.faculty,
-                  professorship: values.professorship,
-                  consultant_title: values.consultant_title,
-                  status: values.status,
-                  academic_degree: values.academic_degree,
-                };
-              }
-              if (values.role.includes("PhD hallgató")) {
-                data = {
-                  ...basicData,
-                  tablename: "students",
-                  consultant_name: values.consultant_name,
-                  consultant2_name: values.consultant2_name,
-                  student_title: values.student_title,
-                  payment_method: values.payment_method,
-                  date_of_admission: values.date_of_admission,
-                };
-              }
               const rawData = await fetch(
-                "http://localhost:3000/api/addPerson",
+                "http://localhost:3000/api/addCommittee",
                 {
                   method: "POST",
                   headers: {
@@ -95,25 +60,38 @@ const Admin: NextPage<Props> = (props) => {
               );
               const res = await rawData.json();
               console.log(res);
+              alert("New committee added!");
             }}
           >
             {(props) => {
               const { values } = props;
               return (
                 <Form>
-                  <BasicInfo />
-                  {values.role === "Témavezető / oktató" && <ConsultantInfo />}
-                  {values.role.includes("PhD hallgató") && <StudentInfo />}
+                  <div>
+                    <h1>Add committee</h1>
+                    <br />
+                    Firstname:
+                    <Field type="text" name="firstname" />
+                    <br />
+                    Lastname:
+                    <Field type="text" name="lastname" />
+                    <br />
+                    Email:
+                    <Field type="text" name="email" />
+                    <br />
+                    Institution_name:
+                    <Field type="text" name="institution_name" />
+                    <br />
+                    Faculty:
+                    <Field type="text" name="faculty" />
+                    <br />
+                  </div>
 
                   <button type="submit">Submit</button>
                 </Form>
               );
             }}
           </Formik>
-          <br />
-          <Link href="/admin/exam">
-            <button>Komplex vizsga</button>
-          </Link>
         </div>
       </>
     );

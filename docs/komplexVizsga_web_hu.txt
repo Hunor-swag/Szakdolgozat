@@ -1,0 +1,25 @@
+<p><img style="margin: 10px; float: left;" src="images/other/talarsapka.jpg" alt="talarsapka" width="200" height="150" /><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;">Az Informatikai Tudományok Doktori Iskola 2023. január 12-én 13 órai kezdettel az egyetem I épületének 726-os termében komplex vizsgát tart. </span><br /><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;">Bakon Krisztián doktorandusz hallgató a komplex vizsgához szükséges kötelezettségét teljesítette, ezért kérése alapján a Doktori Iskola Tanácsa engedélyezte számára a komplex vizsgát.</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr id="system-readmore" />
+<div>&nbsp; <span style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">A komplex vizsga bizottság:</span></div>
+<div>&nbsp;</div>
+<p class="western" style="margin-right: 0.32cm; margin-bottom: 0cm; line-height: 100%;"><span style="font-weight: normal; font-size: 12pt;">Elnök:</span></p>
+<p class="western" style="margin-right: 0.32cm; margin-bottom: 0cm; line-height: 100%; padding-left: 120px;"><span style="font-weight: normal; font-size: 12pt; font-family: times new roman, times;"><span style="font-size: 12pt; color: #00000a;">Dr. Dósa György, DSc, egyetemi tanár, PE</span></span></p>
+<p>&nbsp;</p>
+<p class="western" style="margin-right: 0.32cm; margin-bottom: 0cm; line-height: 100%;"><span style="font-weight: normal; font-size: 12pt;">Vizsgáztatók: </span></p>
+<p class="western" style="margin-right: 0.32cm; margin-bottom: 0cm; line-height: 100%; padding-left: 120px;"><span style="font-weight: normal; font-size: 12pt;"><span style="font-size: 12pt; font-family: 'Times New Roman', serif; color: #00000a;">Dr. Szederkényi Gábor, DSc, egyetemi tanár, PPKE</span>&nbsp;<span style="font-size: 12pt; font-family: 'Times New Roman', serif; color: #00000a;">Nagy mûszaki rendszerek és folyamatok optimalizálása </span> (fõtárgy)</span></p>
+<p class="western" style="margin-right: 0.32cm; margin-bottom: 0cm; line-height: 100%; padding-left: 120px;"><span style="font-weight: normal; font-size: 12pt;"><span style="font-size: 12pt; font-family: 'Times New Roman', serif; color: #00000a;">Dr. Heckl István, PhD, egyetemi docens, PE</span>&nbsp;<span style="font-size: 12pt; font-family: 'Times New Roman', serif; color: #00000a;">Számításelmélet II.</span> (melléktárgy)</span></p>
+<p>&nbsp;</p>
+<p class="western" style="margin-right: 0.32cm; margin-bottom: 0cm; line-height: 100%;"><span style="font-weight: normal; font-size: 12pt;">Tagok: </span></p>
+<p class="western" style="margin-right: 0.32cm; margin-bottom: 0cm; line-height: 100%; padding-left: 120px;"><span style="font-weight: normal; font-size: 12pt;"><span style="font-size: 12pt; font-family: 'Times New Roman', serif; color: #00000a;">Dr. Bertók Botond, PhD, egyetemi docens, PE</span></span></p>
+<p class="western" style="margin-right: 0.32cm; margin-bottom: 0cm; line-height: 100%; padding-left: 120px;"><span style="color: #00000a;"><span style="font-size: medium;"><span lang="hu-HU"><span style="font-style: normal;"><span style="font-weight: normal;"><span style="font-size: 12pt; font-family: 'Times New Roman', serif; color: #00000a;">Dr. Hegyháti Máté, PhD, egyetemi docens, SoE</span></span></span></span></span></span><span style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><span style="font-size: 12pt;"></span></span></p>
+<p class="western" style="margin-right: 0.32cm; margin-bottom: 0cm; line-height: 100%; padding-left: 120px;"><br /><span style="font-size: 12pt; font-family: arial, helvetica, sans-serif;"><span style="font-size: 12pt;"></span></span></p>
+<div>
+<div><span style="font-size: medium;"></span><span style="font-size: medium;"><span style="font-size: 12pt; font-family: 'Times New Roman', serif; color: #00000a;">A komplex vizsga nyilvánosságát személyes és online elérhetõséggel is biztosítjuk, az online jelenlét iránt érdeklõdõk egy kérdõív kitöltése és beküldése után kapnak hozzáférési linket. A kérdõív az érdeklõdõk számára az alábbi címen hozzáférhetõ:</span></span></div>
+<div>
+<p style="margin-right: 7px; text-align: justify;"><a href="https://docs.google.com/forms/d/e/1FAIpQLSe8nY7n5PlN7wH5RnolEK5mu_IGzH1CrpL1cqYDE9qxtliBcQ/viewform?vc=0&amp;c=0&amp;w=1&amp;flr=0">https://docs.google.com/forms/d/e/1FAIpQLSe8nY7n5PlN7wH5RnolEK5mu_IGzH1CrpL1cqYDE9qxtliBcQ/viewform?vc=0&amp;c=0&amp;w=1&amp;flr=0</a></p>
+<span style="font-size: 12pt; font-family: arial, helvetica, sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></div>
+<div><span style="font-family: arial, helvetica, sans-serif; font-size: 12pt;">A komplex vizsga nyilvános, arra minden érdeklõdõt tisztelettel meghívunk!</span></div>
+</div>
+<p>&nbsp;</p>

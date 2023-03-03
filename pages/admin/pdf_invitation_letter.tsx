@@ -12,7 +12,15 @@ import {
 import { useState, useEffect } from "react";
 import LinkButton from "../../components/LinkButton";
 
-Font.register({ family: "Inter", src: "/assets/font.otf" });
+Font.register({
+  family: "Ubuntu",
+  fonts: [
+    {
+      src: "https://fonts.gstatic.com/s/questrial/v13/QdVUSTchPBm7nuUeVf7EuStkm20oJA.ttf",
+      fontWeight: "bold",
+    },
+  ],
+});
 
 const styles = StyleSheet.create({
   body: {
@@ -53,6 +61,14 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: "12px",
     marginTop: "20px",
+  },
+  committees: {
+    marginTop: "10px",
+    marginBottom: "5px",
+  },
+  committee: {
+    marginTop: "10px",
+    marginBottom: "5px",
   },
 });
 
@@ -97,6 +113,67 @@ const PDFInvitationLetter = () => {
             lebonyolításában részt venni szíveskedjék.
           </Text>
         </View>
+        <View
+          style={[
+            styles.committees,
+            {
+              textAlign: "justify",
+              marginLeft: "10px",
+              marginRight: "10px",
+              fontSize: "12px",
+              fontWeight: "bold",
+            },
+          ]}
+        >
+          <Text
+            style={[
+              styles.committee,
+              {
+                fontFamily: "Times-Bold",
+              },
+            ]}
+          >
+            Komplex vizsga bizottság:
+          </Text>
+          <Text style={styles.committee}>Elnök:</Text>
+          <Text style={styles.committee}>Vizsgáztatók:</Text>
+          <Text style={styles.committee}>Tagok:</Text>
+          <Text style={{ marginTop: "10px" }}>
+            A komplex vizsgán való részvételt mind személyes, mind online Teams
+            formájában biztosítjuk, utóbbit az alábbi címen:
+          </Text>
+          <Text style={{ marginTop: "10px" }}>[Link]</Text>
+          <Text style={{ marginTop: "10px", fontFamily: "Times-Bold" }}>
+            A komplex vizsgára [év]. [honap] [nap]. (nap) [idopont] kezdettel az
+            Egyetem I épületének [terem] termében kerül sor.
+          </Text>
+          <Text style={{ marginTop: "10px" }}>[idopont]</Text>
+        </View>
+        <View
+          style={{
+            position: "relative",
+            fontSize: "12px",
+            left: "30%",
+            textAlign: "center",
+          }}
+        >
+          <Text style={{ marginTop: "20px" }}>
+            [Doktori iskola vezetoje neve]
+          </Text>
+          <Text>a Doktori iskola vezetője</Text>
+        </View>
+        <View
+          style={{ textAlign: "center", marginTop: "40px", fontSize: "10px" }}
+        >
+          <Text style={{ fontFamily: "Times-Bold" }}>
+            Pannon Egyetem | University of Pannonia
+          </Text>
+          <Text>
+            Informatikai Tudományok Doktori Iskola | Doctoral School of
+            Information Science and Technology
+          </Text>
+          <Text>8200 Veszprém, Egyetem utca 10.</Text>
+        </View>
       </Page>
     </Document>
   );
@@ -111,7 +188,7 @@ const PDFView = () => {
 
   return (
     <>
-      <input type="text" placeholder="Keresztnevg" />
+      <input type="text" placeholder="Keresztnev" />
       <br />
       <PDFViewer>
         <PDFInvitationLetter></PDFInvitationLetter>

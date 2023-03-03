@@ -112,7 +112,9 @@ const Exam: NextPage<Props> = (props) => {
                   <button>Új bizottság felvétele</button>
                 </Link>
                 <button>Felkérő levelek generálása</button>
-                <button>Meghívó generálása</button>
+                <Link href="/admin/invitation_letter">
+                  <button>Meghívó generálása</button>
+                </Link>
                 <br />
                 <button>Jegyzőkönyv generálása</button>
                 <button>HTML generálása</button>
